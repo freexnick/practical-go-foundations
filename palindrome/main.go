@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"fmt"
+	"log"
+	"os"
 	"unicode"
 )
 
@@ -17,8 +19,12 @@ func isPalindrome(s string) bool {
 }
 
 func main() {
-	word := flag.String("word", "", "please provide word")
+	word := flag.String("word", "", "provide word")
 	flag.Parse()
+	if *word == "" {
+		log.Fatal("please provide a word with --word")
+		os.Exit(-1)
+	}
 	r := isPalindrome(*word)
 	fmt.Println(r)
 }

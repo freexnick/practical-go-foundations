@@ -37,8 +37,12 @@ func sha1Sum(fileName string) (string, error) {
 }
 
 func main() {
-	file := flag.String("file", "", "please provide file path")
+	file := flag.String("file", "", "file to check")
 	flag.Parse()
+	if *file == "" {
+		log.Fatal("please provide file with --file flag")
+		os.Exit(-1)
+	}
 	sum, err := sha1Sum(*file)
 	if err != nil {
 		log.Fatal(err)

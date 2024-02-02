@@ -51,8 +51,12 @@ func mostCommon(r io.Reader) (string, uint, error) {
 }
 
 func main() {
-	fileName := flag.String("file", "sherlock.txt", "please provide file")
+	fileName := flag.String("file", "", "file to parse")
 	flag.Parse()
+	if *fileName == "" {
+		log.Fatal("please provide file with --file")
+		os.Exit(-1)
+	}
 	file, err := os.Open(*fileName)
 	if err != nil {
 		log.Fatalf("error: %s", err)
