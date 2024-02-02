@@ -33,7 +33,7 @@ func gitHubInfo(user string) (string, uint16, error) {
 }
 
 func main() {
-	user := flag.String("user", "freexnick", "github user")
+	user := flag.String("user", "", " please provide github user")
 	flag.Parse()
 	login := url.PathEscape(*user)
 	name, repos, err := gitHubInfo(login)
